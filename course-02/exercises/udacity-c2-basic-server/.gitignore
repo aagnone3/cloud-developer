@@ -35,3 +35,6 @@ UserInterfaceState.xcuserstate
 node_modules
 venv/
 .vscode
+
+# Added by @aagnone3
+credentials.bash
