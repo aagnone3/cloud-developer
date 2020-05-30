@@ -42,6 +42,7 @@ router.get('/signed-url/:fileName',
     requireAuth, 
     async (req: Request, res: Response) => {
     let { fileName } = req.params;
+    console.log('Getting signed PUT URL for ' + fileName);
     const url = AWS.getPutSignedUrl(fileName);
     res.status(201).send({url: url});
 });
@@ -65,12 +66,14 @@ router.post('/',
         return res.status(400).send({ message: 'File url is required' });
     }
 
+    console.log('Filename and caption are valid');
     const item = await new FeedItem({
             caption: caption,
             url: fileName
     });
 
     const saved_item = await item.save();
+    console.log('Item saved');
 
     saved_item.url = AWS.getGetSignedUrl(saved_item.url);
     res.status(201).send(saved_item);
