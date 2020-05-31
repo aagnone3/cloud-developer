@@ -38,7 +38,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
     }
 
     const filteredImagePath = await filterImageFromURL(image_url);
-    res.sendFile(filteredImagePath, (err) => {
+    res.status(200).sendFile(filteredImagePath, (err) => {
       if(err) {
         console.log('Error: ' + err.message);
       }
